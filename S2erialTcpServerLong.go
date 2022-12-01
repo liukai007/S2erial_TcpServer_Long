@@ -11,6 +11,7 @@ import (
 	"runtime"
 	"strconv"
 	"strings"
+	"sync"
 	"time"
 )
 
@@ -124,6 +125,7 @@ func init() {
 }
 
 func main() {
+	var wg sync.WaitGroup
 	println(serialPortVal)
 	println(ipPort)
 	println(baudVal)
@@ -178,6 +180,7 @@ func main() {
 	go SerialBase(serialPortVal, baudInt, parityBit, dataBits1, stopBit, numMilli)
 
 	var tcpConn net.Conn
+	wg.Add(1)
 	go func() {
 		for {
 			tcpConn, err = listen.Accept() // 监听客户端的连接请求
@@ -189,11 +192,8 @@ func main() {
 			}
 		}
 	}()
-
-	for true {
-		time.Sleep(time.Second * 100)
-	}
-
+	wg.Wait()
+	fmt.Println("执行完毕了")
 }
 
 func SerialBase(serialPort string, baudVal int, parityVal serial.Parity, dataBits1 uint8, stopBitsVal serial.StopBits, noMillisecondsV int) error {
