@@ -191,7 +191,7 @@ func main() {
 	}()
 
 	for true {
-		time.Sleep(time.Second)
+		time.Sleep(time.Second * 100)
 	}
 
 }
