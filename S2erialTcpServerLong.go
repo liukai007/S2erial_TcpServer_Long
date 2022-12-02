@@ -246,6 +246,10 @@ func SerialBase(serialPort string, baudVal int, parityVal serial.Parity, dataBit
 			//var n int
 			//buf := make([]byte, 1024)
 			if tcpConnMap != nil {
+				if len(tcpConnMap) == 0 {
+					time.Sleep(5 * time.Second)
+					continue
+				}
 				for tcpConn, _ := range tcpConnMap {
 					if !tcpConnBooleanMap[tcpConn] {
 						tcpConnBooleanMap[tcpConn] = true
