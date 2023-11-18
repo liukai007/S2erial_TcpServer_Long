@@ -282,7 +282,7 @@ func SerialBase(serialPort string, baudVal int, parityVal serial.Parity, dataBit
 	for {
 		buf := make([]byte, 1024)
 		lens, err := serialConn.Read(buf)
-		time.Sleep(time.Duration(noMillisecondsV) * time.Millisecond)
+		//time.Sleep(time.Duration(noMillisecondsV) * time.Millisecond)
 		if err != nil {
 			log.Println(err)
 			serialConn, err = serial.OpenPort(ser)
@@ -337,6 +337,6 @@ func sendData(tcpConn1 net.Conn, serialConn1 serial.Port) {
 			break
 		}
 		log.Printf("远程IP和端口:"+tcpConn1.RemoteAddr().String()+":"+"Tx:%X \n", revData)
-		time.Sleep(500 * time.Millisecond)
+		//time.Sleep(500 * time.Millisecond)
 	}
 }
