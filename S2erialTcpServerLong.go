@@ -296,7 +296,7 @@ func SerialBase(serialPort string, baudVal int, parityVal serial.Parity, dataBit
 					fmt.Println("Windows system")
 				}
 				serialConn, err = serial.OpenPort(ser)
-				time.Sleep(time.Second)
+				//time.Sleep(time.Second)
 			}
 			continue
 		}
