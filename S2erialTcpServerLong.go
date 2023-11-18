@@ -126,6 +126,7 @@ func init() {
 
 func main() {
 	var wg sync.WaitGroup
+	log.Println("版本号" + "1.0.1")
 	println(serialPortVal)
 	println(ipPort)
 	println(baudVal)
